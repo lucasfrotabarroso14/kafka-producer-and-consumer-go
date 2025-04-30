@@ -1,0 +1,7 @@
+### Envia mensagem para o Kafka via seu handler
+POST http://localhost:3333/
+Content-Type: application/json
+
+{
+  "message_to_kafka": "Olá, Kafka! Esta é uma mensagem de teste."
+}
