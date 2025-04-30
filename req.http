@@ -1,4 +1,4 @@
-### Envia mensagem para o Kafka via seu handler
+
 POST http://localhost:3333/
 Content-Type: application/json
 
