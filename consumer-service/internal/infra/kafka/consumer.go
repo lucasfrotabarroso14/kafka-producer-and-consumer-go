@@ -22,7 +22,7 @@ func NewKafkaConsumer(brokers, groupID string) (*Consumer, error) {
 	return &Consumer{reader: c}, nil
 }
 
-func (c *Consumer) Consume(topic string, groupID string) error {
+func (c *Consumer) Consume(topic string, handler func(key []byte, value []byte)) error {
 	err := c.reader.SubscribeTopics([]string{topic}, nil)
 	if err != nil {
 		return err
@@ -32,9 +32,14 @@ func (c *Consumer) Consume(topic string, groupID string) error {
 		msg, err := c.reader.ReadMessage(-1)
 		if err == nil {
 
-			fmt.Printf("Mensagem recebida: %s = %s\n", string(msg.Key), string(msg.Value))
+			handler(msg.Key, msg.Value)
+
 		} else {
 			fmt.Printf("Erro: %v\n", err)
 		}
 	}
+}
+
+func (c *Consumer) Close() error {
+	return c.reader.Close()
 }
