@@ -1,6 +1,7 @@
 package events
 
 import (
+	"context"
 	"sync"
 	"time"
 )
@@ -12,7 +13,7 @@ type EventInterface interface {
 	SetPayload(payload interface{})
 }
 type EventHandlerInterface interface {
-	Handle(event EventInterface, wg *sync.WaitGroup)
+	Handle(ctx context.Context, event EventInterface, wg *sync.WaitGroup)
 }
 
 type EventDispatcherInterface interface {

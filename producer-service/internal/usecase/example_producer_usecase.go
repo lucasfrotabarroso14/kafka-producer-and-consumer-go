@@ -16,7 +16,7 @@ func NewExampleProducerUseCase(kafka port.KafkaProducer) *ExampleProducerUseCase
 }
 
 func (uc *ExampleProducerUseCase) Execute(ctx context.Context, input port.InputDTO) (int, error) {
-	err := uc.kafka.Publish("example_topic", []byte("key"), []byte(input.Message))
+	err := uc.kafka.Publish("transactions", []byte("key"), []byte(input.Message))
 	if err != nil {
 		return 500, err
 	}

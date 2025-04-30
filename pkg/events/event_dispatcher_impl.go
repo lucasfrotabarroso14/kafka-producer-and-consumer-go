@@ -1,6 +1,7 @@
 package events
 
 import (
+	"context"
 	"errors"
 	"sync"
 )
@@ -68,7 +69,7 @@ func (ed *EventDispatcher) Dispatch(event EventInterface) error {
 	if handlers, ok := ed.handlers[event.GetName()]; ok {
 		for _, handle := range handlers {
 			wg.Add(1)
-			go handle.Handle(event, wg)
+			go handle.Handle(context.Background(), event, wg)
 		}
 		wg.Wait()
 	}
