@@ -19,6 +19,6 @@ A aplicação é composta por dois microsserviços principais:
 - O `Consumer Service` escuta esses eventos e, ao receber uma mensagem, despacha para diferentes `handlers` registrados em memória.
 - Os `handlers` representam unidades de negócio, como:
   - `Process`: processamento da transação.
-  - `FraudDetection`: simulação de detecção de fraude.
+  - `FraudDetection`: simulação de detecção de fraude. * Não implementado ainda *
 
 
